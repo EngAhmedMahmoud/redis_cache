@@ -1,0 +1,11 @@
+{
+  "name": "node_cache",
+  "version": "1.0.0",
+  "description": "library project for saving data about books and how to increase the performance of this project by loading data faster and saving it into memory for a faster response",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "EngAhmedMahmoud",
+  "license": "ISC"
+}
