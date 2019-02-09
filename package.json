@@ -4,7 +4,8 @@
   "description": "library project for saving data about books and how to increase the performance of this project by loading data faster and saving it into memory for a faster response",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "author": "EngAhmedMahmoud",
   "license": "ISC",
@@ -14,5 +15,8 @@
     "express": "^4.16.4",
     "mongoose": "^5.4.10",
     "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
