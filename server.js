@@ -3,12 +3,15 @@ require("dotenv/config");
 const express = require('express');
 const bodyParser = require("body-parser");
 const booksRouter = require('./books/BookRoutes');
+const redis = require("./utils/redis.con");
 const app = express();
 //DB Connection
 require("./utils/db.con");
+//Redis connection
+redis.redisConnection();
+
 const SERVER_IP = process.env.SERVER_IP;
 const SERVER_PORT = process.env.SERVER_PORT;
-require("./books/BookRoutes")
 //init app
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
