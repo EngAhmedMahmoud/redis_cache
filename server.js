@@ -17,18 +17,11 @@ app.use(bodyParser.json());
 app.use('/books', booksRouter);
 //handle any http error
 app.use((req, res, next) => {
-    let error = new Error;
-    return next(error);
+    return res.status(404).json({
+        error: req.url + " Not Found"
+    });
 });
-app.use((error, req, res, next) => {
-    if (error) {
-        error.message = "Not found";
-        error.code = 500;
-        return res.json(error);
-    } else {
-        return next();
-    }
-})
+
 //run server
 app.listen(SERVER_PORT, () => {
     console.log(`Server started ${SERVER_IP}:${SERVER_PORT}`);
