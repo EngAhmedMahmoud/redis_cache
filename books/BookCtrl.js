@@ -90,5 +90,18 @@ exports.edit = (req, res, next) => {
 }
 //show book
 exports.show = (req, res, next) => {
-
+    let bookId = req.params.id;
+    Book.findById(bookId)
+        .then((book) => {
+            res.status(200).json({
+                success: 1,
+                book: book
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                success: 0,
+                error: error
+            });
+        })
 }
