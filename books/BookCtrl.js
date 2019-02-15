@@ -25,14 +25,7 @@ exports.books = (req, res, next) => {
 }
 //save book
 exports.save = (req, res, next) => {
-    let title = req.body.title;
-    let author = req.body.author;
-    let content = req.body.content;
-    let newBook = new Book({
-        title: title,
-        author: author,
-        content: content
-    });
+    let newBook = new Book(req.body);
     newBook.save()
         .then((book) => {
             res.status(200).json({ success: 1, book });
@@ -48,7 +41,28 @@ exports.save = (req, res, next) => {
 }
 //delete book
 exports.delete = (req, res, next) => {
+    let bookId = req.params.id;
+    Book.findByIdAndDelete(bookId)
+        .then((deleted) => {
+            if (deleted) {
+                res.status(200).json({
+                    success: 1,
+                    book: deleted
+                });
+            } else {
+                res.status(200).json({
+                    success: 1,
+                    book: "Book Not Exist"
+                });
+            }
 
+        })
+        .catch((error) => {
+            res.status(500).json({
+                success: 0,
+                error: error
+            });
+        })
 }
 //edit book
 exports.edit = (req, res, next) => {
