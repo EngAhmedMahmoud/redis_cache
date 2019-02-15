@@ -28,7 +28,7 @@ exports.save = (req, res, next) => {
     let newBook = new Book(req.body);
     newBook.save()
         .then((book) => {
-            res.status(200).json({ success: 1, book });
+            res.status(201).json({ success: 1, book });
         })
         .catch((err) => {
             if (err && err.errors) {
@@ -66,7 +66,27 @@ exports.delete = (req, res, next) => {
 }
 //edit book
 exports.edit = (req, res, next) => {
+    let bookId = req.params.id;
+    Book.findByIdAndUpdate(bookId, req.body, { new: true })
+        .then((book) => {
+            if (book) {
+                res.status(200).json({
+                    success: 1,
+                    book: book
+                });
+            } else {
+                res.status(200).json({
+                    success: 1,
+                    book: "Book Does not exist"
+                });
+            }
 
+        })
+        .catch((error) => {
+            res.status(200).json({
+                success: 0
+            });
+        })
 }
 //show book
 exports.show = (req, res, next) => {
